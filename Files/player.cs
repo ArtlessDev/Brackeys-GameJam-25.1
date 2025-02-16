@@ -21,30 +21,29 @@ public class Player : IObject
 
     public void Movement()
     {
-        if(Globals.keyboardState.WasKeyPressed(Keys.Left))
+        if(Globals.keyboardState.IsKeyDown(Keys.Left))
         {
-        Debug.WriteLine("in movemment");
-            rectangle = new Rectangle(rectangle.X-64, rectangle.Y, 64, 64);
+            rectangle = new Rectangle(rectangle.X-5, rectangle.Y, 64, 64);
         }
-        else if(Globals.keyboardState.WasKeyPressed(Keys.Right))
+        else if(Globals.keyboardState.IsKeyDown(Keys.Right))
         {
-        Debug.WriteLine("in movemment");
-            rectangle = new Rectangle(rectangle.X+64, rectangle.Y, 64, 64);
+            rectangle = new Rectangle(rectangle.X+5, rectangle.Y, 64, 64);
         }
-        else if(Globals.keyboardState.WasKeyPressed(Keys.Up))
-        {
-        Debug.WriteLine("in movemment");
-            rectangle = new Rectangle(rectangle.X, rectangle.Y-64, 64, 64);
-        }
-        else if(Globals.keyboardState.WasKeyPressed(Keys.Down))
-        {
-        Debug.WriteLine("in movemment");
-            rectangle = new Rectangle(rectangle.X, rectangle.Y+64, 64, 64);
-        }
+        // else if(Globals.keyboardState.WasKeyPressed(Keys.Up))
+        // {
+        //     rectangle = new Rectangle(rectangle.X, rectangle.Y-1, 64, 64);
+        // }
+        // else if(Globals.keyboardState.WasKeyPressed(Keys.Down))
+        // {
+        //     rectangle = new Rectangle(rectangle.X, rectangle.Y+1, 64, 64);
+        // }
     }
 
     public void Update(GameTime gameTime)
     {
         Movement();
+        if (rectangle.Y < 750){
+            rectangle = new Rectangle(rectangle.X, rectangle.Y+10, 64, 64);
+        }
     }
 }
