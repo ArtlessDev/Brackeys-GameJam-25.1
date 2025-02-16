@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Input;
 
 namespace BrackeysGameJam25._1
 {
@@ -8,11 +9,13 @@ namespace BrackeysGameJam25._1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        public Player pc;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            Globals.GlobalContent = Content;
             IsMouseVisible = true;
         }
 
@@ -27,6 +30,8 @@ namespace BrackeysGameJam25._1
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            Globals.LoadContent();
+            pc = new Player();
             // TODO: use this.Content to load your game content here
         }
 
@@ -36,15 +41,28 @@ namespace BrackeysGameJam25._1
                 Exit();
 
             // TODO: Add your update logic here
+            KeyboardExtended.Update();
+            Globals.keyboardState = KeyboardExtended.GetState();
+
+            //All Updates
+            {
+                pc.Update(gameTime);
+                Globals.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Teal);
 
             // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(pc.texture, pc.rectangle, Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
