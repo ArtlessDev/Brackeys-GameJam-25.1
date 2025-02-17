@@ -42,4 +42,8 @@ public enum Objects{
     Pickles,
     Lettuce,
     Patty,
+    Avocado,
+    Bacon,
+    Cheese,
+    Mayo,
 }

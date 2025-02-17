@@ -45,11 +45,15 @@ namespace BrackeysGameJam25._1
 
                 new KitchenObject("DOOR", new(0, 480, 320, 320), Globals.GlobalContent.Load<Texture2D>("./Sprites/DOOR"),false),
                 new KitchenObject(Objects.Bread.ToString(), new(480, 0, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/BREAD"), true),
+                new KitchenObject(Objects.Avocado.ToString(), new(640, 0, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/AVOCADO"), true),
                 new KitchenObject(Objects.Lettuce.ToString(), new(800, 0, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/LETTUCE"), true),
+                new KitchenObject(Objects.Bacon.ToString(), new(960, 0, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/BACON"), true),
                 new KitchenObject(Objects.Patty.ToString(), new(1120, 0, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/PATTY"), true),
                 
                 new KitchenObject(Objects.Pickles.ToString(), new(480, 640, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/PICKLES"), false),
+                new KitchenObject(Objects.Cheese.ToString(), new(640, 640, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/CHEESE"), false),
                 new KitchenObject(Objects.RedOnion.ToString(), new(800, 640, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/REDONION"), false),
+                new KitchenObject(Objects.Mayo.ToString(), new(960, 640, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/MAYO"), false),
                 new KitchenObject(Objects.Tomato.ToString(), new(1120, 640, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/TOMATO"), false),
                 
                 new KitchenObject("ARROW1", new(1440, 160, 160, 160), Globals.GlobalContent.Load<Texture2D>("./Sprites/ARROW"), true),
