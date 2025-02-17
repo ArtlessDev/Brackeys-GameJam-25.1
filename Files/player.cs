@@ -39,11 +39,23 @@ public class Player : IObject
         // }
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime, KitchenObject[] ingredients)
     {
         Movement();
         if (rectangle.Y < 750){
             rectangle = new Rectangle(rectangle.X, rectangle.Y+10, 64, 64);
         }
+
+
+        foreach(KitchenObject ingredient in ingredients)
+        {
+            if(ingredient.rectangle.Intersects(this.rectangle)
+            && (int)(gameTime.TotalGameTime.TotalMilliseconds % 1000)  == 0)
+            {
+                Debug.WriteLine(ingredient.identifier);
+            }
+        }
     }
+
+
 }

@@ -22,11 +22,11 @@ public static class Globals{
     {
         soundEffectInstance.Play();
 
-        if((int)(gameTime.TotalGameTime.TotalSeconds % 10)  == 0 && gravFlip)
+        if((int)(gameTime.TotalGameTime.TotalMilliseconds % 10000)  == 0 && gravFlip)
         {
             gravFlip = false;
         }
-        else if((int)(gameTime.TotalGameTime.TotalSeconds % 10)  != 0 )
+        else if((int)(gameTime.TotalGameTime.TotalMilliseconds % 10000)  != 0 )
         {
             gravFlip = true;
         }
