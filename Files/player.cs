@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
@@ -10,6 +11,7 @@ public class Player : IObject
     public Rectangle rectangle { get; set; }
     public Texture2D texture { get; set; }
     public Color color{ get; set; }
+    public List<string> ingredientStack;
 
     public Player()
     {
@@ -17,6 +19,7 @@ public class Player : IObject
         texture = Globals.GlobalContent.Load<Texture2D>("./Sprites/blokkit");
         rectangle = new Rectangle(0, 0, 64, 64);
         color = Color.White;
+        ingredientStack = new List<string>();
     }
 
     public void Movement()
@@ -29,14 +32,6 @@ public class Player : IObject
         {
             rectangle = new Rectangle(rectangle.X+5, rectangle.Y, 64, 64);
         }
-        // else if(Globals.keyboardState.WasKeyPressed(Keys.Up))
-        // {
-        //     rectangle = new Rectangle(rectangle.X, rectangle.Y-1, 64, 64);
-        // }
-        // else if(Globals.keyboardState.WasKeyPressed(Keys.Down))
-        // {
-        //     rectangle = new Rectangle(rectangle.X, rectangle.Y+1, 64, 64);
-        // }
     }
 
     public void Update(GameTime gameTime, KitchenObject[] ingredients)
@@ -49,10 +44,18 @@ public class Player : IObject
 
         foreach(KitchenObject ingredient in ingredients)
         {
-            if(ingredient.rectangle.Intersects(this.rectangle)
-            && (int)(gameTime.TotalGameTime.TotalMilliseconds % 1000)  == 0)
+            if(ingredient.rectangle.Intersects(rectangle)
+            && Globals.keyboardState.WasKeyPressed(Keys.Space))
             {
-                Debug.WriteLine(ingredient.identifier);
+                //Debug.WriteLine(ingredient.identifier);
+                ingredientStack.Add(ingredient.identifier);
+            }
+            if(ingredient.rectangle.Intersects(rectangle)
+            && Globals.keyboardState.WasKeyPressed(Keys.Tab))
+            {
+                //Debug.WriteLine(ingredient.identifier);
+                ingredientStack.Remove(ingredient.identifier);
+                Debug.WriteLine(ingredientStack.Count);
             }
         }
     }
