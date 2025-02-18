@@ -8,7 +8,7 @@ public class Customer : IObject
     public Rectangle rectangle { get; set; }
     public Texture2D texture { get; set; }
     public Color color { get; set; } = Color.White;
-    public TimeSpan patience { get; set; }
+    public int patience { get; set; }
 
     public Customer(){
         int rand = Random.Shared.Next(0,3);
@@ -40,6 +40,8 @@ public class Customer : IObject
         return new Customer()
         {
             identifier = "Green",
+            patience = 30,
+
         };
     }
     Customer GetYellowCustomer()
@@ -47,6 +49,7 @@ public class Customer : IObject
         return new Customer()
         {
             identifier = "Yellow",
+            patience = 30,
 
         };
     }
@@ -55,6 +58,7 @@ public class Customer : IObject
         return new Customer()
         {
             identifier = "Orange",
+            patience = 25,
 
         };
     }
@@ -63,6 +67,7 @@ public class Customer : IObject
         return new Customer()
         {
             identifier = "Red",
+            patience = 15,
 
         };
     }
