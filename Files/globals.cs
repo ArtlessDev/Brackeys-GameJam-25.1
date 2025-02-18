@@ -11,6 +11,8 @@ public static class Globals{
     public static SoundEffectInstance soundEffectInstance;
     public static SoundEffect soundEffect;
     public static bool gravFlip = true;
+    public static int customerCounter = 0;
+
     
     public static void LoadContent()
     {

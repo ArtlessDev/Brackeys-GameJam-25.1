@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +14,8 @@ namespace BrackeysGameJam25._1
         private SpriteBatch _spriteBatch;
         public Player pc;
         public KitchenObject[] kitchen, ingredients;
+
+        public Queue<Customer> customerQueue;
 
         public Game1()
         {
@@ -41,6 +44,8 @@ namespace BrackeysGameJam25._1
             pc = new Player(){
                 rectangle = new Rectangle(50, 100, 64, 64)
             };
+
+            customerQueue = new Queue<Customer>();
 
             kitchen = [
                 new KitchenObject("BACKGROUND", new(0, 0, 1600, 900), Globals.GlobalContent.Load<Texture2D>("./Sprites/BACKGROUND"), false),
@@ -88,6 +93,11 @@ namespace BrackeysGameJam25._1
                 {
                     ingredient.Update(gameTime);
                 }
+            }
+
+            if(gameTime.TotalGameTime.Seconds%15 == 0 && gameTime.TotalGameTime.Milliseconds == 999)
+            {
+                
             }
 
             base.Update(gameTime);
