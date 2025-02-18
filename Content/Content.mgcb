@@ -19,6 +19,20 @@
 /processorParam:Quality=Best
 /build:Audio/diner-music-141844.mp3;Audio/diner_music.mp3
 
+#begin Audio/File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Audio/File.spritefont;Audio/PrettyPixel.spritefont
+
+#begin Audio/PrettyPixelBIG.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Audio/PrettyPixelBIG.spritefont
+
 #begin Sprites/ARROW.png
 /importer:TextureImporter
 /processor:TextureProcessor

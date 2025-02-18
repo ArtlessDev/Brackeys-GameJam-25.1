@@ -52,19 +52,19 @@ public class KitchenObject : IObject
         ///both are needed to, 1. only have it run every x seconds and only on the millisecond listed 
         if (isFloating == true && gameTime.TotalGameTime.Seconds % 6 == 0 && gameTime.TotalGameTime.Milliseconds % 899 == 0)
         {
-            Debug.WriteLine("change " + gameTime.TotalGameTime.Seconds);
+            //Debug.WriteLine("change " + gameTime.TotalGameTime.Seconds);
             isFloating = false;
         }
         else if (isFloating == false && gameTime.TotalGameTime.Seconds % 6 == 0 && gameTime.TotalGameTime.Milliseconds % 899 == 0)
         {
-            Debug.WriteLine("change");
+            //Debug.WriteLine("change");
             isFloating = true;
         }   
         ApplyGravity();
     }
 }
 
-public enum Objects{
+public enum Ingredients{
     Bread,
     RedOnion,
     Tomato,
