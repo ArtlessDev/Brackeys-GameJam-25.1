@@ -7,67 +7,118 @@ public class Customer : IObject
     public string identifier { get; set; }
     public Rectangle rectangle { get; set; }
     public Texture2D texture { get; set; }
-    public Color color { get; set; } = Color.White;
+    public Color color { get; set; }
     public int patience { get; set; }
+    public Ingredients[] customerOrder { get; set;}
 
-    public Customer(){
-        int rand = Random.Shared.Next(0,3);
+    public Customer()
+    {
 
-        if (Globals.customerCounter < 3)
-            rand = Random.Shared.Next(2,3);
-
-        GetCustomer(rand);
     }
 
-    public Customer GetCustomer(int rand)
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    public void Update()
     {
+        
+    }
+
+    public Customer GetCustomer()
+    {
+        int rand = Random.Shared.Next(0,4);
+
+        int ingredientCount = Random.Shared.Next(1,7);
+
+        if (Globals.customerCounter < 3)
+            rand = Random.Shared.Next(2,4);
+
         switch (rand)
         {
             case 0:
-                return GetRedCustomer();
+                return GetRedCustomer(ingredientCount);
             case 1:
-                return GetOrangeCustomer();
+                return GetOrangeCustomer(ingredientCount);
             case 2:
-                return GetYellowCustomer();
+                return GetYellowCustomer(ingredientCount);
             case 3:
             default:
-                return GetGreenCustomer();
+                return GetGreenCustomer(ingredientCount);
         }
     }
 
-    Customer GetGreenCustomer()
+    public Customer GetGreenCustomer(int ingredientCount)
     {
+        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        for(var i = 0; i < ingredientCount; i++)
+        {
+            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+        }
+
         return new Customer()
         {
             identifier = "Green",
             patience = 30,
-
+            texture = Globals.GlobalContent.Load<Texture2D>("./Sprites/GreenAlien"),
+            rectangle = new Rectangle(150, 490, 160, 160),
+            color = Color.White,
+            customerOrder = ingredients
         };
     }
-    Customer GetYellowCustomer()
+    public Customer GetYellowCustomer(int ingredientCount)
     {
+        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        for(var i = 0; i < ingredientCount; i++)
+        {
+            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+        }
+
         return new Customer()
         {
             identifier = "Yellow",
             patience = 30,
+            texture = Globals.GlobalContent.Load<Texture2D>("./Sprites/YellowAlien"),
+            rectangle = new Rectangle(150, 490, 160, 160) ,
+            color = Color.White,
+            customerOrder = ingredients
 
         };
     }
-    Customer GetOrangeCustomer()
+    public Customer GetOrangeCustomer(int ingredientCount)
     {
+        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        for(var i = 0; i < ingredientCount; i++)
+        {
+            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+        }
+
         return new Customer()
         {
             identifier = "Orange",
             patience = 25,
+            texture = Globals.GlobalContent.Load<Texture2D>("./Sprites/OrangeAlien"),
+            rectangle = new Rectangle(150, 490, 160, 160) ,
+            color = Color.White,
+            customerOrder = ingredients
 
         };
     }
-    Customer GetRedCustomer()
+    public Customer GetRedCustomer(int ingredientCount)
     {
+        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        for(var i = 0; i < ingredientCount; i++)
+        {
+            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+        }
+        
         return new Customer()
         {
             identifier = "Red",
             patience = 15,
+            texture = Globals.GlobalContent.Load<Texture2D>("./Sprites/RedAlien"),
+            rectangle = new Rectangle(150, 490, 160, 160) ,
+            color = Color.White,
+            customerOrder = ingredients
 
         };
     }

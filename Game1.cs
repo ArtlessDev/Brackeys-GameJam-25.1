@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,8 +16,7 @@ namespace BrackeysGameJam25._1
         private SpriteBatch _spriteBatch;
         public Player pc;
         public KitchenObject[] kitchen, ingredients;
-
-        public Queue<Customer> customerQueue;
+        public List<Customer> customerQueue;
 
         public Game1()
         {
@@ -45,7 +46,7 @@ namespace BrackeysGameJam25._1
                 rectangle = new Rectangle(50, 100, 64, 64)
             };
 
-            customerQueue = new Queue<Customer>();
+            customerQueue = new List<Customer>();
 
             kitchen = [
                 new KitchenObject("BACKGROUND", new(0, 0, 1600, 900), Globals.GlobalContent.Load<Texture2D>("./Sprites/BACKGROUND"), false),
@@ -95,10 +96,18 @@ namespace BrackeysGameJam25._1
                 }
             }
 
-            if(gameTime.TotalGameTime.Seconds%15 == 0 && gameTime.TotalGameTime.Milliseconds == 999)
+            if(gameTime.TotalGameTime.Seconds% 6 == 0 && gameTime.TotalGameTime.Milliseconds % 899 == 0)
             {
-                
+                Customer tempCustomer = new Customer().GetCustomer();
+                Debug.WriteLine(tempCustomer.identifier);
+                Globals.customerCounter++;
+                customerQueue.Add(tempCustomer);
             }
+
+            // foreach(var customer in customerQueue)
+            // {
+            //     customer.Update();
+            // }
 
             base.Update(gameTime);
         }
@@ -139,14 +148,21 @@ namespace BrackeysGameJam25._1
                 }
             }
 
-            var heldIngredients = "CURRENT ORDER:\n";
-            foreach(var ingredient in pc.ingredientStack)
-            {
-                heldIngredients += $"{ingredient}\n";
-            }
-            _spriteBatch.DrawString(Globals.gameFont, heldIngredients, new Vector2(32, 32), Color.White);
+            // //var tempCustomerQueue = customerQueue.Reverse();
+            // foreach(var customer in customerQueue)
+            // {
+            //     //int xPos = customer.rectangle.X - tempCustomerQueue.Distinct 
+            //     //_spriteBatch.Draw(customer.texture, new Rectangle(customer.rectangle.X, customer.rectangle.Y, customer.rectangle.Width, customer.rectangle.Height), customer.color);
+            //     _spriteBatch.Draw(customer.texture, customer.rectangle, customer.color);
+            // }
             
-            //_spriteBatch.DrawString(Globals.gameFont, heldIngredients, new Vector2(32, 160), Color.White,);
+
+            for(int customerIndex = customerQueue.Count - 1; customerIndex >= 0; customerIndex--)
+            {
+                int xPos = 150 - (customerIndex * 40);
+                Rectangle tempRect = new Rectangle(xPos, 490, customerQueue[customerIndex].rectangle.Width, customerQueue[customerIndex].rectangle.Height);
+                _spriteBatch.Draw(customerQueue[customerIndex].texture, tempRect, customerQueue[customerIndex].color);
+            }
 
             _spriteBatch.Draw(pc.texture, pc.rectangle, pc.color);
 

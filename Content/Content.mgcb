@@ -141,6 +141,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/FLOOR.png
 
+#begin Sprites/GreenAlien.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/GreenAlien.png
+
 #begin Sprites/LETTUCE.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -164,6 +176,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/MAYO.png
+
+#begin Sprites/OrangeAlien.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/OrangeAlien.png
 
 #begin Sprites/PATTY.png
 /importer:TextureImporter
@@ -189,6 +213,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/PICKLES.png
 
+#begin Sprites/RedAlien.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/RedAlien.png
+
 #begin Sprites/REDONION.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -212,4 +248,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/TOMATO.png
+
+#begin Sprites/YellowAlien.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/YellowAlien.png
 

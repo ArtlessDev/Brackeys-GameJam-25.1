@@ -26,7 +26,7 @@ public static class Globals{
     }
     public static void Update(GameTime gameTime)
     {
-        soundEffectInstance.Play();
+        //soundEffectInstance.Play();
 
         // if((int)(gameTime.TotalGameTime.Seconds % 10) == 0 && gravFlip)
         // {
