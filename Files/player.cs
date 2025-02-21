@@ -30,11 +30,12 @@ public class Player : IObject
         if(Globals.keyboardState.IsKeyDown(Keys.Left))
         {
             flipper = SpriteEffects.FlipHorizontally;
-            rectangle = new Rectangle(rectangle.X-5, rectangle.Y, 64, 64);
+            rectangle = new Rectangle(rectangle.X-7, rectangle.Y, 64, 64);
         }
         else if(Globals.keyboardState.IsKeyDown(Keys.Right))
         {
-            rectangle = new Rectangle(rectangle.X+5, rectangle.Y, 64, 64);
+            flipper = SpriteEffects.None;
+            rectangle = new Rectangle(rectangle.X+7, rectangle.Y, 64, 64);
         }
     }
 

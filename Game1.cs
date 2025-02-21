@@ -120,19 +120,23 @@ namespace BrackeysGameJam25._1
 
                 if (matchesOrder)
                 {
-                    //Debug.WriteLine("???");
                     Globals.deliverInstance.Play();
                     score += customerQueue.Count;
                     customerQueue.RemoveAt(0);
                     pc.ingredientStack.Clear();
-                    customerQueue[0].patienceCounter = gameTime.TotalGameTime.Seconds + customerQueue[0].patience;
+                    customerQueue[0].patienceCounter = (gameTime.TotalGameTime.Seconds + customerQueue[0].patience) % 60;
                 }
                 else{
                     Globals.incorrectInstance.Play();
-                    //Debug.WriteLine("no match");
                 }
             }
 
+            if (customerQueue[0].patienceCounter == gameTime.TotalGameTime.Seconds && gameTime.TotalGameTime.Milliseconds == 899)
+            {
+                customerQueue.RemoveAt(0);
+                pc.ingredientStack.Clear();
+                customerQueue[0].patienceCounter = (gameTime.TotalGameTime.Seconds + customerQueue[0].patience) % 60;
+            }
             
             base.Update(gameTime);
         }
@@ -173,6 +177,7 @@ namespace BrackeysGameJam25._1
                 }
             }
 
+            _spriteBatch.DrawString(Globals.gameFont, "CURRENT ORDER:", new Vector2(16, 16), Color.White);
             tempArr = pc.ingredientStack.ToArray();
             for(int ingredient = 0; ingredient < tempArr.Length; ingredient++)
             {
@@ -181,8 +186,8 @@ namespace BrackeysGameJam25._1
                 
                 _spriteBatch.Draw(heldIngredientTexture, new Rectangle(90, yPos, 64, 64), Color.White);
             }
-            _spriteBatch.DrawString(Globals.gameFont, "CURRENT ORDER:", new Vector2(16, 16), Color.White);
             
+            _spriteBatch.DrawString(Globals.gameFont, "CUSTOMER ORDER:", new Vector2(160, 16), Color.White);
             for(int specIngredient = 0; specIngredient < customerQueue[0].customerOrder.Length; specIngredient++)
             {
                 Texture2D customerIngredientTexture = Globals.GlobalContent.Load<Texture2D>($"./Sprites/{customerQueue[0].customerOrder[specIngredient]}");
@@ -191,7 +196,6 @@ namespace BrackeysGameJam25._1
                 _spriteBatch.Draw(customerIngredientTexture, new Rectangle(180, yPos, 64, 64), Color.White);
 
             }
-            _spriteBatch.DrawString(Globals.gameFont, "CUSTOMER ORDER:", new Vector2(160, 16), Color.White);
            
            
             _spriteBatch.DrawString(Globals.gameFont, $"MONEY: { score}", new Vector2(1440, 16), Color.White);
