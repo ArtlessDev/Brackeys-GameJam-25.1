@@ -19,6 +19,12 @@
 /processorParam:Quality=Best
 /build:Audio/diner-music-141844.mp3;Audio/diner_music.mp3
 
+#begin Audio/equip-sound-272428.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/equip-sound-272428.mp3;Audio/pickup.mp3
+
 #begin Audio/File.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -26,12 +32,24 @@
 /processorParam:TextureFormat=Compressed
 /build:Audio/File.spritefont;Audio/PrettyPixel.spritefont
 
+#begin Audio/item-pick-up-38258.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/item-pick-up-38258.mp3;Audio/deliver.mp3
+
 #begin Audio/PrettyPixelBIG.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Audio/PrettyPixelBIG.spritefont
+
+#begin Audio/training-program-incorrect1-88736.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/training-program-incorrect1-88736.mp3;Audio/incorrect.mp3
 
 #begin Sprites/ARROW.png
 /importer:TextureImporter

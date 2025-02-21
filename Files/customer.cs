@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,7 +10,8 @@ public class Customer : IObject
     public Texture2D texture { get; set; }
     public Color color { get; set; }
     public int patience { get; set; }
-    public Ingredients[] customerOrder { get; set;}
+    public float patienceCounter { get; set; }
+    public string[] customerOrder { get; set;}
 
     public Customer()
     {
@@ -49,10 +51,12 @@ public class Customer : IObject
 
     public Customer GetGreenCustomer(int ingredientCount)
     {
-        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        string[] ingredients = new string[ingredientCount];
         for(var i = 0; i < ingredientCount; i++)
         {
-            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+            var tempIngredient = (Ingredients)(Random.Shared.Next(0,10));
+            ingredients[i] = tempIngredient.ToString();
+
         }
 
         return new Customer()
@@ -62,15 +66,18 @@ public class Customer : IObject
             texture = Globals.GlobalContent.Load<Texture2D>("./Sprites/GreenAlien"),
             rectangle = new Rectangle(150, 490, 160, 160),
             color = Color.White,
-            customerOrder = ingredients
+            customerOrder = ingredients,
         };
     }
     public Customer GetYellowCustomer(int ingredientCount)
     {
-        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        string[] ingredients = new string[ingredientCount];
         for(var i = 0; i < ingredientCount; i++)
         {
-            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+            var tempIngredient = (Ingredients)(Random.Shared.Next(0,10));
+            ingredients[i] = tempIngredient.ToString(); 
+
+
         }
 
         return new Customer()
@@ -80,16 +87,18 @@ public class Customer : IObject
             texture = Globals.GlobalContent.Load<Texture2D>("./Sprites/YellowAlien"),
             rectangle = new Rectangle(150, 490, 160, 160) ,
             color = Color.White,
-            customerOrder = ingredients
-
+            customerOrder = ingredients,
         };
     }
     public Customer GetOrangeCustomer(int ingredientCount)
     {
-        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        string[] ingredients = new string[ingredientCount];
         for(var i = 0; i < ingredientCount; i++)
         {
-            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+            var tempIngredient = (Ingredients)(Random.Shared.Next(0,10));
+            ingredients[i] = tempIngredient.ToString(); 
+
+
         }
 
         return new Customer()
@@ -105,10 +114,13 @@ public class Customer : IObject
     }
     public Customer GetRedCustomer(int ingredientCount)
     {
-        Ingredients[] ingredients = new Ingredients[ingredientCount];
+        string[] ingredients = new string[ingredientCount];
         for(var i = 0; i < ingredientCount; i++)
         {
-            ingredients[i] = (Ingredients)(Random.Shared.Next(0,10));
+            var tempIngredient = (Ingredients)(Random.Shared.Next(0,10));
+            ingredients[i] = tempIngredient.ToString(); 
+
+
         }
         
         return new Customer()
@@ -122,4 +134,6 @@ public class Customer : IObject
 
         };
     }
+
+    
 }

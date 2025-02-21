@@ -17,6 +17,8 @@ namespace BrackeysGameJam25._1
         public Player pc;
         public KitchenObject[] kitchen, ingredients;
         public List<Customer> customerQueue;
+        public int score = 0;
+        string[] tempArr;
 
         public Game1()
         {
@@ -96,19 +98,42 @@ namespace BrackeysGameJam25._1
                 }
             }
 
-            if(gameTime.TotalGameTime.Seconds% 6 == 0 && gameTime.TotalGameTime.Milliseconds % 899 == 0)
+            if(gameTime.TotalGameTime.Seconds% 6 == 0 && gameTime.TotalGameTime.Milliseconds % 899 == 0 && customerQueue.Count <= 4)
             {
                 Customer tempCustomer = new Customer().GetCustomer();
-                Debug.WriteLine(tempCustomer.identifier);
+                //Debug.WriteLine(tempCustomer.identifier);
                 Globals.customerCounter++;
                 customerQueue.Add(tempCustomer);
             }
 
-            // foreach(var customer in customerQueue)
-            // {
-            //     customer.Update();
-            // }
+            if (pc.rectangle.Intersects(kitchen[2].rectangle) && Globals.keyboardState.WasKeyPressed(Keys.Space))
+            {
+                //this checks whether the player is in range of dropping off the meal or not
 
+                bool matchesOrder = true;
+                foreach (var ingredient in customerQueue[0].customerOrder)
+                {
+                    if (!pc.ingredientStack.Contains(ingredient)){
+                        matchesOrder = false;
+                    }
+                }
+
+                if (matchesOrder)
+                {
+                    //Debug.WriteLine("???");
+                    Globals.deliverInstance.Play();
+                    score += customerQueue.Count;
+                    customerQueue.RemoveAt(0);
+                    pc.ingredientStack.Clear();
+                    customerQueue[0].patienceCounter = gameTime.TotalGameTime.Seconds + customerQueue[0].patience;
+                }
+                else{
+                    Globals.incorrectInstance.Play();
+                    //Debug.WriteLine("no match");
+                }
+            }
+
+            
             base.Update(gameTime);
         }
 
@@ -148,15 +173,29 @@ namespace BrackeysGameJam25._1
                 }
             }
 
-            // //var tempCustomerQueue = customerQueue.Reverse();
-            // foreach(var customer in customerQueue)
-            // {
-            //     //int xPos = customer.rectangle.X - tempCustomerQueue.Distinct 
-            //     //_spriteBatch.Draw(customer.texture, new Rectangle(customer.rectangle.X, customer.rectangle.Y, customer.rectangle.Width, customer.rectangle.Height), customer.color);
-            //     _spriteBatch.Draw(customer.texture, customer.rectangle, customer.color);
-            // }
+            tempArr = pc.ingredientStack.ToArray();
+            for(int ingredient = 0; ingredient < tempArr.Length; ingredient++)
+            {
+                Texture2D heldIngredientTexture = Globals.GlobalContent.Load<Texture2D>($"./Sprites/{tempArr[ingredient]}");
+                int yPos = 32 + (64 * ingredient);
+                
+                _spriteBatch.Draw(heldIngredientTexture, new Rectangle(90, yPos, 64, 64), Color.White);
+            }
+            _spriteBatch.DrawString(Globals.gameFont, "CURRENT ORDER:", new Vector2(16, 16), Color.White);
             
+            for(int specIngredient = 0; specIngredient < customerQueue[0].customerOrder.Length; specIngredient++)
+            {
+                Texture2D customerIngredientTexture = Globals.GlobalContent.Load<Texture2D>($"./Sprites/{customerQueue[0].customerOrder[specIngredient]}");
 
+                int yPos = 32 + (64 * specIngredient);
+                _spriteBatch.Draw(customerIngredientTexture, new Rectangle(180, yPos, 64, 64), Color.White);
+
+            }
+            _spriteBatch.DrawString(Globals.gameFont, "CUSTOMER ORDER:", new Vector2(160, 16), Color.White);
+           
+           
+            _spriteBatch.DrawString(Globals.gameFont, $"MONEY: { score}", new Vector2(1440, 16), Color.White);
+            
             for(int customerIndex = customerQueue.Count - 1; customerIndex >= 0; customerIndex--)
             {
                 int xPos = 150 - (customerIndex * 40);
@@ -164,7 +203,8 @@ namespace BrackeysGameJam25._1
                 _spriteBatch.Draw(customerQueue[customerIndex].texture, tempRect, customerQueue[customerIndex].color);
             }
 
-            _spriteBatch.Draw(pc.texture, pc.rectangle, pc.color);
+            //PLAYER
+            _spriteBatch.Draw(pc.texture, new Rectangle(pc.rectangle.X, pc.rectangle.Y, pc.rectangle.Width, pc.rectangle.Height), null, pc.color, 0f, new Vector2(), pc.flipper, 0f);
 
             _spriteBatch.End();
 

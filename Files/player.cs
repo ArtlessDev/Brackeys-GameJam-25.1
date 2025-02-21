@@ -13,6 +13,8 @@ public class Player : IObject
     public Color color{ get; set; }
     public List<string> ingredientStack;
 
+    public SpriteEffects flipper;
+
     public Player()
     {
         identifier = "blokkit";
@@ -20,12 +22,14 @@ public class Player : IObject
         rectangle = new Rectangle(0, 0, 64, 64);
         color = Color.White;
         ingredientStack = new List<string>();
+        flipper = SpriteEffects.None;
     }
 
     public void Movement()
     {
         if(Globals.keyboardState.IsKeyDown(Keys.Left))
         {
+            flipper = SpriteEffects.FlipHorizontally;
             rectangle = new Rectangle(rectangle.X-5, rectangle.Y, 64, 64);
         }
         else if(Globals.keyboardState.IsKeyDown(Keys.Right))
@@ -48,12 +52,14 @@ public class Player : IObject
             && Globals.keyboardState.WasKeyPressed(Keys.Space))
             {
                 //Debug.WriteLine(ingredient.identifier);
+                Globals.pickupInstance.Play();
                 ingredientStack.Add(ingredient.identifier);
             }
             if(ingredient.rectangle.Intersects(rectangle)
             && Globals.keyboardState.WasKeyPressed(Keys.Tab))
             {
                 //Debug.WriteLine(ingredient.identifier);
+                Globals.pickupInstance.Play();
                 ingredientStack.Remove(ingredient.identifier);
                 Debug.WriteLine(ingredientStack.Count);
             }
